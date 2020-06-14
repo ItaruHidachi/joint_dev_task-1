@@ -65,8 +65,8 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  programming_languages = programming_languages.map {|x| x.capitalize}
-  upper_case_programming_languages = programming_languages.map {|x| x.upcase}
+  programming_languages.map! {|x| x.capitalize}
+  upper_case_programming_languages = programming_languages.map(&:upcase)
   # 以下は変更しないで下さい
   p programming_languages
   p upper_case_programming_languages
@@ -85,19 +85,18 @@ def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
 
   # 以下に回答を記載
-  if foods.include?("うに")
-    p "好物です"
-  else
-    p "まぁまぁ好きです"
+  x = 0
+  foods.each do |food|
+    food.include?("うに") ? x += 1 : x += 0
   end
+  p x ==0 ? "まぁまぁ好きです" : "好物です"
 end
 
 def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-  sports = sports.flatten.uniq
-  sports.each.with_index(1) do |sport,i|
+  sports.flatten.uniq.each.with_index(1) do |sport,i|
     p "No.#{i} #{sport}"
   end
 end
@@ -129,16 +128,8 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  if data1.key?(:age)
-    p "OK"
-  else
-    p "NG"
-  end
-  if data2.key?(:age)
-    p "OK"
-  else
-    p "NG"
-  end
+  p data1.key?(:age) ? "OK" : "NG"
+  p data2.key?(:age) ? "OK" : "NG"
 end
 
 def q16
@@ -157,7 +148,17 @@ end
 
 class UserQ17
   # 以下に回答を記載
-
+  attr_accessor :name,:age,:gender
+  def initialize(name:,age:,gender:)
+    self.name = name
+    self.age = age
+    self.gender = gender
+  end
+  def info
+    p "名前：#{self.name}"
+    p "年齢：#{self.age}"
+    p "性別：#{self.gender}"
+  end
 end
 
 def q17
@@ -172,7 +173,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
-
+  attr_accessor :name,:age
+  def initialize(name:,age:)
+    self.name = name
+    self.age = age
+  end
+  def introduce
+    if self.age >= 20
+      return "こんにちは，#{self.name}と申します。宜しくお願いいたします。"
+    else
+      return "はいさいまいど〜，#{self.name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -186,9 +198,9 @@ end
 
 class Item
   # 以下を修正して下さい
-
-  def initialize(name)
-    @name = name
+  attr_accessor :name
+  def initialize(name:)
+    self.name = name
   end
 end
 
@@ -200,12 +212,23 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name,:age
+  def initialize(name:,age:)
+    self.name = name
+    self.age = age
+  end
 
 end
 
 class Zoo
   # 以下に回答を記載
-
+  attr_accessor :name,:entry_fee
+  def initialize(name:,entry_fee:)
+    self.name = name
+    self.entry_fee = entry_fee
+  end
+  def info()
+  end
 end
 
 
