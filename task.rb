@@ -178,11 +178,7 @@ class UserQ18
     self.age = age
   end
   def introduce
-    if self.age >= 20
-      return "こんにちは，#{self.name}と申します。宜しくお願いいたします。"
-    else
-      return "はいさいまいど〜，#{self.name}です！！！"
-    end
+    return self.age >= 20 ? "こんにちは，#{self.name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{self.name}です！！！"
   end
 end
 
