@@ -147,23 +147,24 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  attr_accessor :name,:age,:gender
-  def initialize(name:,age:,gender:)
-    self.name = name
-    self.age = age
-    self.gender = gender
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
   end
   def info
-    p "名前：#{self.name}"
-    p "年齢：#{self.age}"
-    p "性別：#{self.gender}"
+    puts <<~text
+    名前：#{@name}
+    年齢：#{@age}
+    性別：#{@gender}
+    text
   end
 end
 
 def q17
   # ここは変更しないで下さい（ユーザー情報は変更していただいてOKです）
-  user1 = UserQ17.new(name: "神里", age: 32, gender: "男")
-  user2 = UserQ17.new(name: "あじー", age: 32, gender: "男")
+  user1 = UserQ17.new(name:"神里",age:32,gender:"男")
+  user2 = UserQ17.new(name:"あじー",age:32,gender:"男")
 
   user1.info
   puts "-------------"
@@ -172,13 +173,12 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_accessor :name,:age
-  def initialize(name:,age:)
-    self.name = name
-    self.age = age
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
   end
   def introduce
-    return self.age >= 20 ? "こんにちは，#{self.name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{self.name}です！！！"
+    return @age >= 20 ? "こんにちは，#{@name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{@name}です！！！"
   end
 end
 
@@ -193,9 +193,11 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
-  def initialize(name:)
-    self.name = name
+  def initialize(**params)
+    @name = params[:name]
+  end
+  def name
+    @name
   end
 end
 
